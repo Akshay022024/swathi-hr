@@ -48,7 +48,7 @@ const dailyQuotes = [
     { text: "Your time is limited. Don't waste it living someone else's life.", author: "Steve Jobs" },
 ]
 
-export default function Sidebar({ isOpen, onToggle }) {
+export default function Sidebar({ isOpen, onToggle, onClose }) {
     const location = useLocation()
     const [quote, setQuote] = useState(dailyQuotes[0])
 
@@ -65,7 +65,7 @@ export default function Sidebar({ isOpen, onToggle }) {
             </button>
 
             {/* Overlay for mobile */}
-            {isOpen && <div className="sidebar-overlay" onClick={onToggle} />}
+            {isOpen && <div className="sidebar-overlay" onClick={onClose} />}
 
             <aside className={`sidebar ${isOpen ? 'sidebar-open' : ''}`}>
                 <div className="sidebar-brand">
@@ -81,7 +81,7 @@ export default function Sidebar({ isOpen, onToggle }) {
                                 key={item.path}
                                 to={item.path}
                                 className={`sidebar-link ${location.pathname === item.path ? 'active' : ''}`}
-                                onClick={onToggle}
+                                onClick={onClose}
                             >
                                 <span className="icon"><Icon size={18} /></span>
                                 <span>{item.label}</span>

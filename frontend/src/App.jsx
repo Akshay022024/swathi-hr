@@ -46,7 +46,11 @@ function App() {
     <ToastContext.Provider value={{ addToast, API }}>
       <BrowserRouter>
         <div className="app-layout">
-          <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(prev => !prev)} />
+          <Sidebar
+            isOpen={sidebarOpen}
+            onToggle={() => setSidebarOpen(prev => !prev)}
+            onClose={() => setSidebarOpen(false)}
+          />
           <main className="main-content">
             <Routes>
               <Route path="/" element={<Dashboard />} />
