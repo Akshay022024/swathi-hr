@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Matcher - Shopify Backend Developer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 AI Resume Matcher</h1>
+            <p class="subtitle">Shopify Back-End Developer Position</p>
+        </header>
+
+        <div class="upload-section">
+            <div class="upload-card">
+                <div class="upload-icon">📄</div>
+                <h2>Upload Resume</h2>
+                <p>Upload a resume (PDF or DOCX) to analyze against the job description</p>
+                
+                <form id="uploadForm">
+                    <div class="file-input-wrapper">
+                        <input type="file" id="resumeFile" accept=".pdf,.docx" required>
+                        <label for="resumeFile" class="file-label">
+                            <span id="fileName">Choose a file...</span>
+                        </label>
+                    </div>
+                    <button type="submit" id="analyzeBtn" class="btn-primary">
+                        <span id="btnText">Analyze Resume</span>
+                        <span id="btnLoader" class="loader" style="display: none;"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="results" class="results-section" style="display: none;">
+            <div class="results-header">
+                <h2>Analysis Results</h2>
+            </div>
+
+            <div class="score-card">
+                <div class="score-circle">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" class="score-bg"></circle>
+                        <circle cx="50" cy="50" r="45" class="score-fill" id="scoreCircle"></circle>
+                    </svg>
+                    <div class="score-text">
+                        <span id="scoreValue">0</span>
+                        <span class="score-label">Match Score</span>
+                    </div>
+                </div>
+                <div class="recommendation-badge" id="recommendation">
+                    <span id="recommendationText">-</span>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <h3>📋 Overall Summary</h3>
+                <p id="summaryText"></p>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-card strengths">
+                    <h3>✅ Strengths</h3>
+                    <ul id="strengthsList"></ul>
+                </div>
+
+                <div class="detail-card gaps">
+                    <h3>⚠️ Gaps & Areas to Improve</h3>
+                    <ul id="gapsList"></ul>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <div class="skills-card matched">
+                    <h3>💚 Matched Skills</h3>
+                    <div id="matchedSkills" class="skills-tags"></div>
+                </div>
+
+                <div class="skills-card missing">
+                    <h3>❌ Missing Skills</h3>
+                    <div id="missingSkills" class="skills-tags"></div>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <h3>💼 Experience Analysis</h3>
+                <p id="experienceText"></p>
+            </div>
+
+            <button class="btn-secondary" onclick="resetForm()">Analyze Another Resume</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
