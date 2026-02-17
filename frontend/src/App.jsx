@@ -18,7 +18,7 @@ export function useToast() {
   return useContext(ToastContext)
 }
 
-const API = 'http://localhost:8000'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 function App() {
   const [toasts, setToasts] = useState([])
